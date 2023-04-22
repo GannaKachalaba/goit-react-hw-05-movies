@@ -9,6 +9,7 @@ import {
 // import { toast } from 'react-toastify';
 import { getMovieDetails } from 'services/fetchApi';
 import styles from './MovieDetails.module.css';
+import NotImage from 'components/NotImage/not_image_found.jpg';
 
 export default function Movie() {
   const { movieId } = useParams();
@@ -35,7 +36,11 @@ export default function Movie() {
       {movie && (
         <div>
           <img
-            src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+            src={
+              movie.poster_path
+                ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+                : NotImage
+            }
             alt={movie.title}
           ></img>
           <h2>{movie.title}</h2>
